@@ -1,9 +1,9 @@
-const { connection } = require("../config/db");
+const db = require("../config/db");
 const cache = require("memory-cache");
 const CACHE_DURATION = 60 * 1000;
 
 function getBooks(search = {}) {
-	const cacheKey = "/" + JSON.stringify(criteria);
+	const cacheKey = "/" + JSON.stringify(search);
 
 	// Check if the data is already in the cache
 	const cachedData = cache.get(cacheKey);
@@ -14,12 +14,12 @@ function getBooks(search = {}) {
 
 	return new Promise((resolve, reject) => {
 		const [query, params] = prepareGetBookQuery(search);
-		connection.query(query, params, queryCallBack(resolve, reject, cacheKey));
+		db.pool.query(query, params, queryCallBack(resolve, reject, cacheKey));
 	});
 }
 
 function getBooksCount(search = {}) {
-  const cacheKey = "/count" + JSON.stringify(criteria);
+  const cacheKey = "/count" + JSON.stringify(search);
 
 	// Check if the data is already in the cache
 	const cachedData = cache.get(cacheKey);
@@ -30,7 +30,7 @@ function getBooksCount(search = {}) {
 
 	return new Promise((resolve, reject) => {
 		const [query, params] = prepareGetBookQuery(search, true);
-		connection.query(query, params, queryCallBack(resolve, reject, cacheKey));
+		db.pool.query(query, params, queryCallBack(resolve, reject, cacheKey));
 	});
 }
 

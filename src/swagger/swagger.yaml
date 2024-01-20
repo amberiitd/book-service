@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: API for retrieving a list of books based on search criteria.
 servers:
-  - url: 'http://localhost:3000'
+  - url: '/'
     description: Local development server
 
 paths:
@@ -74,6 +74,62 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Book'
+      security:
+        - jwt_auth: []
+
+  /auth/login:
+    post:
+      summary: Authenticate user and obtain JWT token.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+                - username
+                - password
+      responses:
+        '200':
+          description: Successfully authenticated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: JWT token for authentication.
+        '401':
+          description: Unauthorized. Invalid credentials.
+
+  /auth/register:
+    post:
+      summary: Register a new user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+                - username
+                - password
+      responses:
+        '201':
+          description: User registered successfully.
+        '400':
+          description: Bad request. User already exists or missing required fields.
 
 components:
   schemas:
@@ -93,3 +149,8 @@ components:
           type: string
         availability:
           type: boolean
+  securitySchemes:
+    jwt_auth:
+      type: apiKey
+      name: Authorization
+      in: header

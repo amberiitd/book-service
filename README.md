@@ -92,5 +92,6 @@ The API implements caching for the `GET /books` endpoint using the `memory-cache
   5. JWT_SECRET_KEY
   6. SERVER_PORT
 
-4. Start the server:
+4. Login to your `mysql` shell and run the sql script `src/data/book.sql` using `source src/data/book.sql`.
+5. Start the server:
   ```npm start```
