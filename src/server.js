@@ -6,12 +6,31 @@ const passport = require('./config/passport');
 const authRoutes = require('./routes/auth');
 const booksRoute = require('./routes/books');
 const { authenticateToken } = require('./middleware/authMiddleware');
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+const path = require('path');
 
+// app
 const app = express();
 const port = process.env.PORT || 3000;
 
+// middlwares
 app.use(bodyParser.json());
 app.use(passport.initialize());
+
+
+// Swagger options
+const swaggerOptions = {
+  swaggerDefinition: YAML.load(path.join(__dirname, 'swagger', 'swagger.yaml')),
+  apis: ['./routes/*.js'], // Specify the routes containing Swagger annotations
+};
+
+// Initialize Swagger-jsdoc
+const swaggerSpec = swaggerJsdoc(swaggerOptions);
+
+// Serve Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Routes
 app.use('/auth', authRoutes);

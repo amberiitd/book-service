@@ -11,6 +11,13 @@ The Books API provides endpoints for retrieving a list of books based on search 
 - **Database Indexing**: Optimize database queries with indexing on relevant columns.
 - **Caching**: Improve performance by caching query results in memory.
 
+## Swagger Documentation
+
+Explore the API interactively using Swagger documentation. Swagger provides a user-friendly interface to understand the API endpoints, parameters, and response formats.
+
+To access Swagger documentation, run the API and visit [http://localhost:3000/api-docs](http://localhost:3000/api-docs) in your browser.
+
+
 ## Endpoints
 
 ### GET /books
