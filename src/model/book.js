@@ -1,6 +1,6 @@
+const { cache, CACHE_DURATION } = require("../config/cache");
 const db = require("../config/db");
-const cache = require("memory-cache");
-const CACHE_DURATION = 60 * 1000;
+
 
 function getBooks(search = {}) {
 	const cacheKey = "/" + JSON.stringify(search);
