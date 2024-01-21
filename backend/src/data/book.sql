@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS books (
     availability BOOLEAN
 );
 
-CREATE INDEX idx_title ON books (title);
+CREATE INDEX idx_title ON books (title); -- we can create more indexes to oprimize the fetch query
 
 
 CREATE TABLE IF NOT EXISTS users (
