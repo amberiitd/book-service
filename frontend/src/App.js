@@ -1,6 +1,6 @@
 import SearchBox from "./component/searchBox";
 import ShowList from "./component/showList";
-import useSearch from "./hooks/useSerch";
+import useSearch from "./hooks/useSearch";
 
 function App() {
 
