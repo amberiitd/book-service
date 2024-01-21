@@ -63,6 +63,29 @@ curl -X GET "http://localhost:3000/books?title=javascript&sortBy=title&sortOrder
 
 The `/books` API requires authentication using a JSON Web Token (JWT). Include the JWT token in the `Authorization` header of your requests.
 
+## Authentication Endpoints
+
+### Login
+
+Endpoint for user authentication.
+
+- **URL**: `/login`
+- **Method**: `POST`
+- **Parameters**:
+  - `username`: User's username.
+  - `password`: User's password.
+
+### Register
+
+Endpoint for user registration.
+
+- **URL**: `/register`
+- **Method**: `POST`
+- **Parameters**:
+  - `username`: User's desired username.
+  - `password`: User's desired password.
+
+
 ## Database Indexing
 
 To optimize database queries, relevant columns in the books table have been indexed. Indexing is applied to columns frequently used in search and filtering operations.
