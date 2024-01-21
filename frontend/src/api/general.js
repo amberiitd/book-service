@@ -1,4 +1,4 @@
-export function getBooks(searchString) {
+export function getBooks(searchString, token) {
 	const queryParams = {
 		...(searchString ? { title: searchString } : {}),
 		// author: 'J.K. Rowling',
@@ -10,5 +10,9 @@ export function getBooks(searchString) {
 
 	// Convert parameters to a query string
 	const queryString = new URLSearchParams(queryParams).toString();
-	return fetch(`${process.env.REACT_APP_API_BASE_URL}/books?${queryString}`).then((data) => data.json());
+	return fetch(`${process.env.REACT_APP_API_BASE_URL}/books?${queryString}`, {
+		headers: {
+			Authorization: token,
+		},
+	}).then((data) => data.json());
 }

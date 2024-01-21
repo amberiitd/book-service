@@ -41,7 +41,7 @@ Retrieve a list of books based on the provided search criteria.
 **Example Request:**
 
 ```bash
-curl -X GET "http://localhost:3000/books?title=javascript&sortBy=title&sortOrder=asc&page=1&size=10" -H "Authorization: Bearer YOUR_JWT_TOKEN"
+curl -X GET "http://localhost:3000/books?title=javascript&sortBy=title&sortOrder=asc&page=1&size=10" -H "Authorization: YOUR_JWT_TOKEN"
 ```
 
 **Example Request:**

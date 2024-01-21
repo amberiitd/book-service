@@ -1,6 +1,7 @@
 import React from "react";
 
 const ShowList = ({ books = [] }) => {
+  if (!books || books.length  === 0) return <>No books to show</>
 	return (
 		<table>
 			<tr>
