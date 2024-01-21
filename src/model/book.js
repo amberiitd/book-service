@@ -8,7 +8,7 @@ function getBooks(search = {}) {
 	// Check if the data is already in the cache
 	const cachedData = cache.get(cacheKey);
 	if (cachedData) {
-		console.log("Data retrieved from cache");
+		console.info("Data retrieved from cache");
 		return Promise.resolve(cachedData);
 	}
 
@@ -24,7 +24,7 @@ function getBooksCount(search = {}) {
 	// Check if the data is already in the cache
 	const cachedData = cache.get(cacheKey);
 	if (cachedData) {
-		console.log("Data retrieved from cache");
+		console.info("Data retrieved from cache");
 		return Promise.resolve(cachedData);
 	}
 
@@ -40,7 +40,7 @@ function queryCallBack(resolve, reject, cacheKey) {
 			reject(error);
 		} else {
 			cache.put(cacheKey, results, CACHE_DURATION);
-			console.log("Data added to cache");
+			console.info("Data added to cache");
 			resolve(results);
 		}
 	};

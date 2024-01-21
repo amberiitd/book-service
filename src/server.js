@@ -10,6 +10,7 @@ const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 const path = require('path');
+const { rateLimiter } = require("./middleware/rateLimiterMiddleware");
 
 // app
 const app = express();
@@ -34,8 +35,12 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Routes
 app.use('/auth', authRoutes);
-app.use('/books', authenticateToken, booksRoute, bookErrorHandler);
+app.use('/books', authenticateToken, rateLimiter, booksRoute, bookErrorHandler);
 
+// default route handler
+app.use((req, res) => {
+  res.status(404).json({ error: 'Not Found' });
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

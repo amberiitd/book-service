@@ -5,9 +5,8 @@ const router = express.Router();
 
 router.get("/", async (req, res, next)=> {
   try{
-    console.log(req.query);
+    console.info("query", req.query);
     const books = await getBooks(req.query);
-    console.log(books);
     res.status(200).json(books)
   }catch(error){
     next(error);
@@ -16,9 +15,8 @@ router.get("/", async (req, res, next)=> {
 
 router.get("/count", async (req, res, next)=> {
   try{
-    console.log(req.query);
+    console.info("query", req.query);
     const bookCount = await getBooksCount(req.query);
-    console.log(bookCount);
     res.status(200).json(bookCount[0])
   }catch(error){
     next(error);

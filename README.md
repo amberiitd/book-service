@@ -10,6 +10,7 @@ The Books API provides endpoints for retrieving a list of books based on search 
 - **Authentication**: Secure access to the API using JWT authentication.
 - **Database Indexing**: Optimize database queries with indexing on relevant columns.
 - **Caching**: Improve performance by caching query results in memory.
+- **Rate Limiter**: The API includes a rate limiter to control the number of fetch requests per user. Provides secuirty against DDOS attacks.
 
 ## Swagger Documentation
 
@@ -85,6 +86,14 @@ Endpoint for user registration.
   - `username`: User's desired username.
   - `password`: User's desired password.
 
+
+### Rate Limiter
+
+The API includes a rate limiter to control the number of fetch requests per user.
+
+- **Throttling Window**: 1 minutes
+- **Maximum Requests**: 30 requests per user in the 1-minute window
+- **Identifier**: The rate limiter uses the username provided by the authentication middleware to uniquely identify users.
 
 ## Database Indexing
 
