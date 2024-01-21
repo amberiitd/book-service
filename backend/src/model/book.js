@@ -1,8 +1,8 @@
 const { cache, CACHE_DURATION } = require("../config/cache");
 const db = require("../config/db");
 
-
 function getBooks(search = {}) {
+	search = sanitizeSearch(search);
 	const cacheKey = "/" + JSON.stringify(search);
 
 	// Check if the data is already in the cache
@@ -19,7 +19,8 @@ function getBooks(search = {}) {
 }
 
 function getBooksCount(search = {}) {
-  const cacheKey = "/count" + JSON.stringify(search);
+  search = sanitizeSearch(search);
+	const cacheKey = "/count" + JSON.stringify(search);
 
 	// Check if the data is already in the cache
 	const cachedData = cache.get(cacheKey);
@@ -92,6 +93,10 @@ function prepareGetBookQuery(criteria, count = false) {
 	}
 
 	return [query, params];
+}
+
+function sanitizeSearch(search={}){
+  return { ...search, page: search.page || 1, size: search.size || 100 };
 }
 
 module.exports = { getBooks, getBooksCount };

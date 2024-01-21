@@ -126,4 +126,4 @@ The API implements caching for the `GET /books` endpoint using the `memory-cache
 
 4. Login to your `mysql` shell and run the sql script `src/data/book.sql` using `source src/data/book.sql`.
 5. Start the server:
-  ```npm start```
+  ```npm run start```
